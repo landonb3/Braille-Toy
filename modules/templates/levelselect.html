@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Level Select</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <style>
+        #tile1 {
+            background-color: #626567;
+        }
+        #tile2 {
+            background-color: #85C1E9;
+        }
+    </style>
+</head>
+
+<body>
+    <section style="background-color: #394b59;" class="hero is-fullheight">
+        <div class="hero-head">
+            <header class="navbar">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <a href="/home" class="navbar-item">
+                            <img src="https://i.imgur.com/983aJax.png?1" width="200rem" alt="Logo">
+                        </a>
+                    </div>
+                    <div id="navbarMenuHeroC" class="navbar-menu">
+                        <div class="navbar-end">
+                            <span class="navbar-item">
+                                <p class="has-text-white">Welcome {{name}}!</p>
+                            </span>
+                            <span class="navbar-item">
+                                <p class="has-text-white">{{points}} points</p>
+                            </span>
+                            <span class="navbar-item">
+                                <a class="button is-info" style="background-color: #2471A3;" href="/home">
+                                    <span>Home</span>
+                                </a>
+                            </span>
+                            <span class="navbar-item">
+                                <a class="button is-info" style="background-color: #85C1E9;" href="/logout">
+                                    <span>Log Out</span>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-centered is-vcentered">
+                    <div class="column is-6">
+                        <div class="tile is-ancestor">
+                            <div class="tile is-vertical">
+                                <div class="tile">
+                                    <div class="tile is-parent is-vertical has-text-centered">
+                                        <div class="tile is-child notification is-info" id="tile1">
+                                            <p style="text-align: center; font-size: 3rem;font-weight: bold;line-height: 1;"
+                                                class="has-text-white">Level Select</p>
+                                            <br>
+                                            <div class="columns is-centered is-vcentered">
+                                                <div class="column is-5">
+                                                    <div class="tile is-ancestor">
+                                                        <div class="tile is-vertical">
+                                                            <div class="tile">
+                                                                <div class="tile is-parent is-vertical has-text-centered">
+                                                                    <article class="tile is-child notification is-info"
+                                                                        id="tile2">
+                                                                        <a style="text-decoration: none;" href="/{{game}}/1">
+                                                                            <p class="title">Level 1</p>
+                                                                        </a>
+                                                                    </article>
+                                                                    <article class="tile is-child notification is-info"
+                                                                        id="tile2">
+                                                                        <a style="text-decoration: none;" href="/{{game}}/2">
+                                                                            <p class="title">Level 2</p>
+                                                                        </a>
+                                                                    </article>
+                                                                    <article class="tile is-child notification is-info"
+                                                                        id="tile2">
+                                                                        <a style="text-decoration: none;" href="/{{game}}/3">
+                                                                            <p class="title">Level 3</p>
+                                                                        </a>
+                                                                    </article>
+                                                                    <article class="tile is-child notification is-info"
+                                                                        id="tile2">
+                                                                        <a style="text-decoration: none;" href="/{{game}}/4">
+                                                                            <p class="title">Level 4</p>
+                                                                        </a>
+                                                                    </article>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="column is-1">
+                                                </div>
+                                                <div class="column is-5">
+                                                    <div class="tile is-ancestor">
+                                                        <div class="tile is-vertical">
+                                                            <div class="tile">
+                                                                <div
+                                                                    class="tile is-parent is-vertical has-text-centered">
+                                                                    <article class="tile is-child notification is-info"
+                                                                        id="tile2">
+                                                                        <a style="text-decoration: none;" href="/{{game}}/5">
+                                                                            <p class="title">Level 5</p>
+                                                                        </a>
+                                                                    </article>
+                                                                    <article class="tile is-child notification is-info"
+                                                                        id="tile2">
+                                                                        <a style="text-decoration: none;" href="/{{game}}/6">
+                                                                            <p class="title">Level 6</p>
+                                                                        </a>
+                                                                    </article>
+                                                                    <article class="tile is-child notification is-info"
+                                                                        id="tile2">
+                                                                        <a style="text-decoration: none;" href="/{{game}}/7">
+                                                                            <p class="title">Level 7</p>
+                                                                        </a>
+                                                                    </article>
+                                                                    <article class="tile is-child notification is-info"
+                                                                        id="tile2">
+                                                                        <a style="text-decoration: none;" href="/{{game}}/8">
+                                                                            <p class="title">Level 8</p>
+                                                                        </a>
+                                                                    </article>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+</body>
+
+</html>

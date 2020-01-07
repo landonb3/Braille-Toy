@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>FitText</title>
+
+    <style type="text/css">
+        .sizable {
+            width: 50vw;
+            height: 50vh;
+            border: 2px solid darkred;
+        }
+    </style>
+    <script>
+        var autoSizeText = function () {
+            var el, elements, _i, _len;
+            elements = $('.resize');
+            if (elements.length < 0) {
+                return;
+            }
+            for (_i = 0, _len = elements.length; _i < _len; _i++) {
+                el = elements[_i];
+                dichoFit = function (el) {
+
+                    diminishText = function () {
+                        var elNewFontSize;
+                        elNewFontSize = (parseInt($(el).css('font-size').slice(0, -2)) - 1) + 'px';
+
+                        return $(el).css('font-size', elNewFontSize);
+                    };
+                    augmentText = function () {
+                        var elNewFontSize;
+                        elNewFontSize = (parseInt($(el).css('font-size').slice(0, -2)) + 1) + 'px';
+
+                        return $(el).css('font-size', elNewFontSize);
+                    };
+
+
+                    diminishText();
+                    while (el.scrollHeight < el.offsetHeight) {
+                        augmentText();
+                    }
+                    augmentText();
+                    while (el.scrollHeight > el.offsetHeight) {
+                        diminishText();
+                    }
+
+                }
+                dichoFit(el);
+            }
+        };
+
+        $(document).ready(function () {
+            autoSizeText();
+            $(window).resize(function resizeText() {
+                autoSizeText()
+            })
+        });</script>
+
+    <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <div class='sizable resize'>
+        I am a sizable div and I have explicit width and height.
+    </div>
+</body>
+
+</html>

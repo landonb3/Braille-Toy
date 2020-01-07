@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Signup</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <style>
+    </style>
+</head>
+
+<body>
+    <section style="background-color: #394b59;" class="hero is-fullheight">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column is-3 has-text-centered">
+                        <a style="line-height: 1; pointer-events: none;"><img width="450rem" height="100rem"
+                                src="https://i.imgur.com/llKwCXv.png?1" /></a>
+                        <hr style="margin: 1.5rem 0rem 1.5rem;">
+                        <form method="POST" action="signup">
+                            <div class="field">
+                                {% csrf_token %}
+                                <p class="control">
+                                    <input name="username" class="input" placeholder="Username">
+                                </p>
+                            </div>
+                            <div class="field">
+                                <p class="control">
+                                    <input name="email" class="input" type="email" placeholder="Email">
+                                </p>
+                            </div>
+                            <div class="field">
+                                <p class="control">
+                                    <input name="password" class="input" type="password" placeholder="Password">
+                                </p>
+                            </div>
+                            <div class="field">
+                                <p class="control">
+                                    <input name="name" class="input" placeholder="What should we call you?">
+                                </p>
+                            </div>
+
+                            <div class="field">
+                                <p class="has-text-danger">{{error}} </p>
+                            </div>
+                            <div class="field is-grouped is-grouped-centered">
+                                <p class="control">
+                                    <button style="margin: .5rem 0rem 0rem;"
+                                        class="button is-info is-inverted is-outlined" type="submit">Sign Up</button>
+                                </p>
+                            </div>
+                            <hr>
+                            <p class="has-text-white">Already have an account? <a
+                                    style="color:#8db0da; font-weight: bold;" href="/">Log In</a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

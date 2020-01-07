@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flashcards</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <style>
+        .container {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 85%;
+            transform: translate(-50%, -50%);
+            font-size: 6vw;
+        }
+
+        .dot {
+            height: 25px;
+            width: 25px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+    </style>
+
+</head>
+
+<body>
+    <section style="background-color: #394b59;" class="hero is-fullheight">
+        <div class="hero-head">
+            <header class="navbar">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <a href="/home" class="navbar-item">
+                            <img src="https://i.imgur.com/983aJax.png?1" width="200rem" alt="Logo">
+                        </a>
+                    </div>
+                    <div id="navbarMenuHeroC" class="navbar-menu">
+                        <div class="navbar-end">
+                            <span class="navbar-item">
+                                <p class="has-text-white">Welcome {{name}}!</p>
+                            </span>
+                            <span class="navbar-item">
+                                <p class="has-text-white">{{points}} points</p>
+                            </span>
+                            <span class="navbar-item">
+                                <a class="button is-info" style="background-color: #2471A3;" href="/home">
+                                    <span>Home</span>
+                                </a>
+                            </span>
+                            <span class="navbar-item">
+                                <a class="button is-info" style="background-color: #85C1E9;" href="/logout">
+                                    <span>Log Out</span>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-centered is-vcentered">
+                    <div class="column is-3">
+                        <div class="tile is-ancestor">
+                            <div class="tile is-vertical">
+                                <div class="tile is-parent is-vertical">
+                                    <article style="background-color: #85C1E9;" class="tile is-child box">
+                                        <div class="tile is-ancestor">
+                                            <div class="tile is-vertical">
+                                                <div class="tile">
+                                                    <div class="tile is-parent is-vertical">
+                                                        <article id="d1" class="tile is-child box">
+                                                            <p id="t1" style="color:#2471A3;" class="title">w</p>
+                                                        </article>
+                                                        <article id="d2" class="tile is-child box">
+                                                            <p id="t2" style="color:#2471A3;" class="title">s</p>
+                                                        </article>
+                                                        <article id="d3" class="tile is-child box">
+                                                            <p id="t3" style="color:#2471A3;" class="title">x</p>
+                                                        </article>
+                                                    </div>
+                                                    <div class="tile is-parent is-vertical">
+                                                        <article id="d4" class="tile is-child box">
+                                                            <p id="t4" style="color:#2471A3;" class="title">e</p>
+                                                        </article>
+                                                        <article id="d5" class="tile is-child box">
+                                                            <p id="t5" style="color:#2471A3;" class="title">d</p>
+                                                        </article>
+                                                        <article id="d6" class="tile is-child box">
+                                                            <p id="t6" style="color:#2471A3;" class="title">c</p>
+                                                        </article>
+                                                    </div>
+                                                </div>
+                                                <div class="tile">
+                                                    <div class="tile is-parent">
+                                                        <article id="letter" style=" padding-bottom: 40px;vertical-align: middle;font-size: 4rem;" class="tile title is-child box">
+                                                            &nbsp
+                                                        </article>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="column is-1">
+                    </div>
+                    <div class="column is-5">
+                        <div class="container">
+                            <img style="border-radius: 6px;" src="https://i.imgur.com/VSndgGj.png" width="600rem">
+                            <div class="centered">
+                                <span
+                                    id="word" style="font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif; font-size: {{fs}}px; font-weight: 600;";><span style="color:#1E8449" id="word1"></span><span style="color:black" id="word2">{{word}}</span></span>
+                            </div>
+                        </div>
+                        <a class="button is-info" style="background-color: #85C1E9; margin-top: 1rem;" href="/flashcards/{{id}}">
+                            <span>New Word</span>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+    </section>
+    <script>
+        var brailleStates = [0, 0, 0, 0, 0, 0]
+        var alpha = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+        var braille_mappings = [[1, 0, 0, 0, 0, 0], [1, 1, 0, 0, 0, 0], [1, 0, 0, 1, 0, 0], [1, 0, 0, 1, 1, 0], [1, 0, 0, 0, 1, 0], [1, 1, 0, 1, 0, 0], [1, 1, 0, 1, 1, 0], [1, 1, 0, 0, 1, 0], [0, 1, 0, 1, 0, 0], [0, 1, 0, 1, 1, 0], [1, 0, 1, 0, 0, 0], [1, 1, 1, 0, 0, 0], [1, 0, 1, 1, 0, 0], [1, 0, 1, 1, 1, 0], [1, 0, 1, 0, 1, 0], [1, 1, 1, 1, 0, 0], [1, 1, 1, 1, 1, 0], [1, 1, 1, 0, 1, 0], [0, 1, 1, 1, 0, 0], [0, 1, 1, 1, 1, 0], [1, 0, 1, 0, 0, 1], [1, 1, 1, 0, 0, 1], [0, 1, 0, 1, 1, 1], [1, 0, 1, 1, 0, 1], [1, 0, 1, 1, 1, 1], [1, 0, 1, 0, 1, 1]]
+        var dict = {}
+        for (i = 0; i < 26; i++) {
+            dict[braille_mappings[i]] = alpha[i]
+        }
+        var letter = ""
+        var orig_word = document.getElementById("word2").innerHTML
+        var target_word = document.getElementById("word2").innerHTML
+
+        document.onkeydown = function (event) {
+            let key = event.key.toUpperCase();
+            if (key == 'W') {
+                if (brailleStates[0] == 1) {
+                    document.getElementById("d1").style.backgroundColor = "white";
+                    document.getElementById("t1").style.color = "#2471A3";
+                    brailleStates[0] = 0
+                } else {
+                    document.getElementById("d1").style.backgroundColor = "#2471A3";
+                    document.getElementById("t1").style.color = "white";
+                    brailleStates[0] = 1
+                }
+            } else if (key == 'S') {
+                if (brailleStates[1] == 1) {
+                    document.getElementById("d2").style.backgroundColor = "white";
+                    document.getElementById("t2").style.color = "#2471A3";
+                    brailleStates[1] = 0
+                } else {
+                    document.getElementById("d2").style.backgroundColor = "#2471A3";
+                    document.getElementById("t2").style.color = "white";
+                    brailleStates[1] = 1
+                }
+            } else if (key == 'X') {
+                if (brailleStates[2] == 1) {
+                    document.getElementById("d3").style.backgroundColor = "white";
+                    document.getElementById("t3").style.color = "#2471A3";
+                    brailleStates[2] = 0
+                } else {
+                    document.getElementById("d3").style.backgroundColor = "#2471A3";
+                    document.getElementById("t3").style.color = "white";
+                    brailleStates[2] = 1
+                }
+            } else if (key == 'E') {
+                if (brailleStates[3] == 1) {
+                    document.getElementById("d4").style.backgroundColor = "white";
+                    document.getElementById("t4").style.color = "#2471A3";
+                    brailleStates[3] = 0
+                } else {
+                    document.getElementById("d4").style.backgroundColor = "#2471A3";
+                    document.getElementById("t4").style.color = "white";
+                    brailleStates[3] = 1
+                }
+            } else if (key == 'D') {
+                if (brailleStates[4] == 1) {
+                    document.getElementById("d5").style.backgroundColor = "white";
+                    document.getElementById("t5").style.color = "#2471A3";
+                    brailleStates[4] = 0
+                } else {
+                    document.getElementById("d5").style.backgroundColor = "#2471A3";
+                    document.getElementById("t5").style.color = "white";
+                    brailleStates[4] = 1
+                }
+            } else if (key == 'C') {
+                if (brailleStates[5] == 1) {
+                    document.getElementById("d6").style.backgroundColor = "white";
+                    document.getElementById("t6").style.color = "#2471A3";
+                    brailleStates[5] = 0
+                } else {
+                    document.getElementById("d6").style.backgroundColor = "#2471A3";
+                    document.getElementById("t6").style.color = "white";
+                    brailleStates[5] = 1
+                }
+            }
+            
+            if (brailleStates in dict) {
+                letter = dict[brailleStates]
+                document.getElementById("letter").innerHTML = letter
+            } else {
+                letter = "&nbsp"
+                document.getElementById("letter").innerHTML = "&nbsp"
+            }
+            if (letter === target_word.charAt(0)) {
+                document.getElementById("word1").innerHTML = document.getElementById("word1").innerHTML + letter
+                target_word = target_word.substring(1,target_word.length)
+                document.getElementById("word2").innerHTML = target_word
+            }
+            if (target_word.length == 0) {
+                window.location.href = window.location.href + orig_word.length;
+            }
+        }
+    </script>
+</body>
+
+</html>
